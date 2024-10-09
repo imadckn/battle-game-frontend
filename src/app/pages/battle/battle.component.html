@@ -49,7 +49,6 @@
                         point<span *ngIf="player2.score>1">s</span>)</span></p>
                 <div class="deck-info">
                     <div class="cards">
-                        <!-- Stacked Cards for Player 2 (Red Back) -->
                         <div *ngFor="let card of player2.deck; let i = index" class="card-back red-card"
                             [ngStyle]="{ 'transform': 'translateY(' + i * 2 + 'px)' }"></div>
                     </div>

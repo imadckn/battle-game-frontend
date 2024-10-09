@@ -23,11 +23,19 @@ export class CongratulationsComponent {
   constructor(private httpGameService: HttpGameService) {}
 
   ngOnInit() {
-    this.winner =
-      this.player1.score > this.player2.score
-        ? this.player1.player
-        : this.player2.player;
-    this.score = `${this.player1.score} - ${this.player2.score}`;
+    if (this.player1.score > this.player2.score) {
+      this.winner = this.player1.player;
+      this.score = `${this.player1.score} - ${this.player2.score}`;
+    } else if (this.player1.score < this.player2.score) {
+      this.winner = this.player2.player;
+      this.score = `${this.player2.score} - ${this.player1.score}`;
+    } else {
+      this.winner = {
+        id: 0,
+        name: 'Égalité',
+      };
+      this.score = `${this.player1.score} - ${this.player2.score}`;
+    }
 
     this.saveGame();
   }
@@ -47,5 +55,9 @@ export class CongratulationsComponent {
         ])
         .subscribe()
     );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

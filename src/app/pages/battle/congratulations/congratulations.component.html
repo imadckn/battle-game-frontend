@@ -1,6 +1,6 @@
 <div class="flex flex-column justify-content-center align-items-center h-full">
     <div class="winner-container" *ngIf="winner && score">
-        <img [src]="winner.avatar" alt="{{ winner.name }}" class="winner-avatar">
+        <img *ngIf="winner.avatar" [src]="winner.avatar" alt="{{ winner.name }}" class="winner-avatar">
         <div class="winner-details">
             <h2 class="winner-name">{{ winner.name }}</h2>
             <p class="winner-score">Score: {{ score }}</p>

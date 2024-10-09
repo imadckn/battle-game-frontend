@@ -41,13 +41,13 @@ export class HomeComponent {
     }).pipe(
       map(({ players, games }) => {
         return games.map((game) => {
-          game.scores = game.scores.map((score) => {
+          game.scores = game.scores.map((score, index) => {
             const player = players.find((p) => p.id == score.playerId);
             return {
               ...score,
               playerName: player ? player.name : 'Invité',
               avatar:
-                score.playerId === 1
+                index === 0
                   ? 'assets/img/player1.png'
                   : 'assets/img/player2.png',
             };
@@ -61,6 +61,11 @@ export class HomeComponent {
   isWinner(game: Game, playerName: string | undefined): boolean {
     const player = game.scores.find((score) => score.playerName === playerName);
     if (!player) return false;
+
+    const scores = game.scores.map((score) => score.score);
+    const uniqueScores = new Set(scores);
+    const scoresAreEqual = uniqueScores.size !== scores.length;
+    if (scoresAreEqual) return false;
 
     return game.scores.every((score) => score.score <= player.score);
   }

@@ -8,8 +8,8 @@
     </div>
 
     <div class="flex flex-column align-items-center">
-        <div *ngFor="let game of games$ | async" class="game-card">
-            <h3 class="game-title">Bataille {{ game.id }}</h3>
+        <div *ngFor="let game of games$ | async; let i = index" class="game-card">
+            <h3 class="game-title">Bataille {{ i + 1 }}</h3>
             <ul class="score-list">
                 <li *ngFor="let score of game.scores" class="score-item">
                     <img [src]="score.avatar" alt="{{ score.playerName }}" class="player-avatar">

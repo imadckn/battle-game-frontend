@@ -92,7 +92,7 @@ export class BattleComponent {
     }
     setTimeout(() => {
       this.getRoundWinner();
-    }, 2500);
+    }, 2000);
   }
 
   getRoundWinner() {
@@ -122,7 +122,7 @@ export class BattleComponent {
         this.cardState2 = 'default';
         this.disableButtons = false;
         if (this.player1.deck.length === 0) this.isFinished = true;
-      }, 2000);
+      }, 1000);
     }
   }
 
