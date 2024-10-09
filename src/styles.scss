@@ -1,4 +1,5 @@
 @import 'assets/styles/variables';
+@import "primeicons/primeicons.css";
 
 html,
 body {
@@ -73,6 +74,11 @@ a {
     &:active {
         transform: scale(0.95);
     }
+
+    &:disabled {
+        background-color: $shade300;
+        cursor: not-allowed;
+    }
 }
 
 .card {
@@ -103,7 +109,6 @@ input,
 textarea {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
     border-radius: $borderRadius;
     border: 1px solid $shade300;
     font-size: $fontSize;
@@ -117,7 +122,6 @@ textarea {
 
 button {
     font-family: $fontFamily;
-    padding: $buttonPadding;
     border-radius: $borderRadius;
     cursor: pointer;
 }

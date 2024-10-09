@@ -5,5 +5,5 @@ import { BattleComponent } from './pages/battle/battle.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'battle', component: BattleComponent },
+  { path: 'battle/:firstPlayer/:secondPlayer', component: BattleComponent },
 ];

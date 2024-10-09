@@ -1,0 +1,143 @@
+@import 'assets/styles/variables';
+
+.container {
+    height: 100vh;
+}
+
+.cards {
+    position: relative;
+    width: 60px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+    transition: transform 0.3s ease;
+}
+
+.blue-card {
+    background-color: #3498db;
+}
+
+.red-card {
+    background-color: #e74c3c;
+}
+
+.player-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.deck-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.leave-icon {
+    position: absolute;
+    right: 0;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: rgb(243, 243, 243);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes colorChange {
+    0% {
+        background-color: #ff9999;
+    }
+
+    25% {
+        background-color: #ffcc99;
+    }
+
+    50% {
+        background-color: #ffff99;
+    }
+
+    75% {
+        background-color: #ccff99;
+    }
+
+    100% {
+        background-color: #99ff99;
+    }
+}
+
+.waiting-message {
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #333;
+    animation: pulse 1.5s infinite;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: $primaryColor;
+    animation: colorChange 3s infinite;
+}
+
+
+.battle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    position: relative;
+}
+
+.battle-card {
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 8px;
+    transition: transform 1s ease-in-out;
+
+    &.player1-card {
+        background-color: #3498db;
+    }
+
+    &.player2-card {
+        background-color: #e74c3c;
+    }
+}
+
+.player1-card {
+    transform: translateX(-100px);
+}
+
+.player2-card {
+    transform: translateX(100px);
+}

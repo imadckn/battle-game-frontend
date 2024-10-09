@@ -1,0 +1,43 @@
+@import 'assets/styles/variables';
+
+.add-button {
+  cursor: pointer;
+
+  .pi-plus-circle {
+    font-size: 20px;
+    color: black;
+  }
+}
+
+
+.custom-input-group {
+  display: flex;
+  align-items: center;
+  width: 60%;
+
+  .custom-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+  }
+
+  .custom-button {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    background: $bgPrimaryHover;
+    color: white;
+    cursor: pointer;
+
+    i {
+      font-size: 1rem;
+    }
+
+    &:hover {
+      background: $bgPrimary;
+    }
+  }
+}

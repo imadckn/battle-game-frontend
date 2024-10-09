@@ -5,21 +5,29 @@ import { CommonModule } from '@angular/common';
 import { forkJoin, map, Observable } from 'rxjs';
 import { Game, HttpGameService } from '../../services/http-game.service';
 import { RouterModule } from '@angular/router';
+import {
+  DynamicDialogModule,
+  DialogService,
+  DynamicDialogRef,
+} from 'primeng/dynamicdialog';
+import { StartGameDialogComponent } from './start-game-dialog/start-game-dialog.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, RouterModule],
-  providers: [HttpPlayerService, HttpGameService],
+  imports: [HttpClientModule, CommonModule, RouterModule, DynamicDialogModule],
+  providers: [HttpPlayerService, HttpGameService, DialogService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   games$!: Observable<Game[]>;
+  ref: DynamicDialogRef | undefined;
 
   constructor(
     private httpPlayerService: HttpPlayerService,
-    private httpGameService: HttpGameService
+    private httpGameService: HttpGameService,
+    public dialogService: DialogService
   ) {}
 
   ngOnInit() {
@@ -55,5 +63,14 @@ export class HomeComponent {
     if (!player) return false;
 
     return game.scores.every((score) => score.score <= player.score);
+  }
+
+  openDialog() {
+    this.ref = this.dialogService.open(StartGameDialogComponent, {
+      header: 'Séléctionnez les joueurs',
+      width: '50%',
+      closable: true,
+      dismissableMask: true,
+    });
   }
 }

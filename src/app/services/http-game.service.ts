@@ -31,4 +31,9 @@ export class HttpGameService {
     const headers = this.getHeaders();
     return this.http.get<Game[]>(`/api/v1/games`, { headers });
   }
+
+  saveGame(scores: { playerId: number; score: number }[]): Observable<Game> {
+    const headers = this.getHeaders();
+    return this.http.post<Game>(`/api/v1/games`, scores, { headers });
+  }
 }
