@@ -1,0 +1,132 @@
+@import 'assets/styles/variables';
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    overflow-x: hidden;
+}
+
+.container {
+    background: $bgPrimary;
+    padding: 10px 30px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $fontFamilyTitle;
+    color: $primaryTextColor;
+    margin: 0 0 10px 0;
+}
+
+p {
+    font-family: $fontFamily;
+    font-size: $fontSizeBody;
+    color: $primaryTextColor;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: $fontSizeTitle;
+    font-weight: $boldWeight;
+}
+
+.subtitle {
+    font-size: $fontSizeBody;
+    font-weight: $semiBoldWeight;
+}
+
+a {
+    color: $secondaryColor;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+        color: $primaryColor;
+    }
+}
+
+.btn {
+    background-color: $buttonBg;
+    color: $buttonTextColor;
+    padding: $buttonPadding;
+    border-radius: $borderRadius;
+    border: none;
+    cursor: pointer;
+    font-weight: $semiBoldWeight;
+    transition: background-color 0.3s, transform 0.2s;
+
+    &:hover {
+
+        background-color: $buttonHoverBg;
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.card {
+    background-color: $shade100;
+    border-radius: $borderRadius;
+    box-shadow: $boxShadow;
+    padding: 20px;
+    margin: 15px 0;
+    text-align: center;
+    color: $shade700;
+
+    .card-title {
+        font-size: $fontSizeTitle;
+        color: $primaryColor;
+        margin-bottom: 10px;
+    }
+
+    .card-body {
+        font-size: $fontSizeBody;
+        color: $shade500;
+    }
+}
+
+
+
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: $borderRadius;
+    border: 1px solid $shade300;
+    font-size: $fontSize;
+    color: $shade700;
+
+    &:focus {
+        border-color: $primaryColor;
+        outline: none;
+    }
+}
+
+button {
+    font-family: $fontFamily;
+    padding: $buttonPadding;
+    border-radius: $borderRadius;
+    cursor: pointer;
+}
+
+// Misc
+.box {
+    border-radius: $borderRadius;
+    padding: 20px;
+    box-shadow: $boxShadow;
+    background-color: $shade000;
+    color: $shade700;
+}

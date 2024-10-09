@@ -1,0 +1,58 @@
+// Primary and Secondary Colors
+$primaryColor: #2C5234 !default;
+$secondaryColor: #004DAA !default;
+$primaryTextColor: #FFFFFF !default;
+$accentRedColor: #E74C3C !default;
+$accentBlackColor: #000000 !default;
+$borderColor: #FFFFFF !default;
+
+// Backgrounds
+$bgPrimary: linear-gradient(to top right, #2C5234 10%, #004DAA 100%) !default;
+$bgPrimaryHover: linear-gradient(to top right, #345F46 15%, #005EB8 100%) !default;
+$buttonBg: #058ab6 !default;
+$buttonHoverBg: #58D68D !default;
+
+// Font Styles
+$fontFamily: 'Arial', sans-serif !default;
+$fontFamilyTitle: 'Helvetica', sans-serif !default;
+$fontSize: 16px !default; // Base font size
+$fontWeight: normal !default;
+$semiBoldWeight: 600 !default;
+$boldWeight: 700 !default;
+
+// Button Styles
+$buttonTextColor: #FFFFFF !default;
+$buttonPadding: 10px 20px !default;
+
+// Shadows
+$boxShadow: 0px 4px 8px rgba(0, 0, 0, 0.3) !default;
+
+// Global Colors Map
+$colors: (
+    "red": $accentRedColor,
+    "black": $accentBlackColor,
+    "green": $primaryColor,
+    "blue": $secondaryColor,
+    "gray": #3D3D3D,
+    "hoverGreen": $buttonHoverBg,
+    "primary": $primaryColor
+);
+
+// Reused Color Variables
+$shade000: #ffffff !default;
+$shade100: #f9f9f9 !default;
+$shade300: #e0e0e0 !default;
+$shade500: #6b7280 !default;
+$shade700: #3f3f46 !default;
+
+// Font Size and Weights
+$fontSizeTitle: 24px !default;
+$fontSizeBody: 16px !default;
+$fontSizeSmall: 14px !default;
+$regularWeight: 400 !default;
+$mediumWeight: 500 !default;
+$semiBoldWeight: 600 !default;
+$boldWeight: 700 !default;
+
+// Border Radius
+$borderRadius: 5px !default;

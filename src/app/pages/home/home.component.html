@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="flex justify-content-center pt-4">
+        <img class="logo" src="assets/img/logo.png" alt="logo">
+    </div>
+
+    <div class="text-center mt-6 mb-4">
+        <a [routerLink]="'/battle'" class="btn">Nouvelle partie</a>
+    </div>
+
+    <div class="flex flex-column align-items-center">
+        <div *ngFor="let game of games$ | async" class="game-card">
+            <h3 class="game-title">Bataille {{ game.id }}</h3>
+            <ul class="score-list">
+                <li *ngFor="let score of game.scores" class="score-item">
+                    <img [src]="score.avatar" alt="{{ score.playerName }}" class="player-avatar">
+                    <span class="player-name"
+                        [ngStyle]="isWinner(game, score.playerName) ? {'color': 'green'} : {'color': 'black'}">{{
+                        score.playerName }}</span>
+                    <span class="player-score">{{ score.score }}</span>
+                    <img *ngIf="isWinner(game, score.playerName)" src="assets/img/winner.png" alt="Winner"
+                        class="winner-medal">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
