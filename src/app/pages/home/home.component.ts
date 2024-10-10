@@ -22,7 +22,6 @@ import { StartGameDialogComponent } from './start-game-dialog/start-game-dialog.
 })
 export class HomeComponent {
   games$!: Observable<Game[]>;
-  ref: DynamicDialogRef | undefined;
 
   constructor(
     private httpPlayerService: HttpPlayerService,
@@ -71,7 +70,7 @@ export class HomeComponent {
   }
 
   openDialog() {
-    this.ref = this.dialogService.open(StartGameDialogComponent, {
+    this.dialogService.open(StartGameDialogComponent, {
       header: 'Séléctionnez les joueurs',
       width: '50%',
       closable: true,

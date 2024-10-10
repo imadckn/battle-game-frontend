@@ -90,40 +90,41 @@ export class BattleComponent {
       this.player2Clicked = true;
       this.currentPlayer2Card = this.player2.deck[0];
     }
-    setTimeout(() => {
-      this.getRoundWinner();
-    }, 2000);
+
+    if (this.player1Clicked && this.player2Clicked) {
+      this.disableButtons = true;
+      // Timeout permettant d'afficher les cartes pendant 1 seconde avant de lancer l'animation
+      setTimeout(() => {
+        this.getRoundWinner();
+      }, 1000);
+    }
   }
 
   getRoundWinner() {
-    if (this.player1Clicked && this.player2Clicked) {
-      this.disableButtons = true;
-      this.player1Clicked = this.player2Clicked = false;
+    this.player1Clicked = this.player2Clicked = false;
 
-      const result = this.gameService.playRound(this.player1, this.player2);
+    const result = this.gameService.playRound(this.player1, this.player2);
 
-      if (
-        result.player1Card !== undefined &&
-        result.player2Card !== undefined
-      ) {
-        if (result.player1Card > result.player2Card) {
-          this.cardState1 = 'player1';
-          this.cardState2 = 'player1';
-        } else if (result.player1Card < result.player2Card) {
-          this.cardState1 = 'player2';
-          this.cardState2 = 'player2';
-        }
+    // animation => déplacement des cartes vers le gagnant
+    if (result.player1Card !== undefined && result.player2Card !== undefined) {
+      if (result.player1Card > result.player2Card) {
+        this.cardState1 = 'player1';
+        this.cardState2 = 'player1';
+      } else if (result.player1Card < result.player2Card) {
+        this.cardState1 = 'player2';
+        this.cardState2 = 'player2';
       }
-
-      setTimeout(() => {
-        this.currentPlayer1Card = undefined;
-        this.currentPlayer2Card = undefined;
-        this.cardState1 = 'default';
-        this.cardState2 = 'default';
-        this.disableButtons = false;
-        if (this.player1.deck.length === 0) this.isFinished = true;
-      }, 1000);
     }
+
+    // reset l'affichage à la fin de chaque round
+    setTimeout(() => {
+      this.currentPlayer1Card = undefined;
+      this.currentPlayer2Card = undefined;
+      this.cardState1 = 'default';
+      this.cardState2 = 'default';
+      this.disableButtons = false;
+      if (this.player1.deck.length === 0) this.isFinished = true;
+    }, 1000);
   }
 
   ngOnDestroy() {

@@ -9,18 +9,6 @@ import { map } from 'rxjs/operators';
 export class GameService {
   constructor(private httpPlayerService: HttpPlayerService) {}
 
-  createDeck(): number[] {
-    return Array.from({ length: 52 }, (_, i) => i + 1);
-  }
-
-  shuffle(deck: number[]): number[] {
-    for (let i = deck.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [deck[i], deck[j]] = [deck[j], deck[i]];
-    }
-    return deck;
-  }
-
   initPlayers(
     player1Id: number,
     player2Id: number
@@ -30,12 +18,13 @@ export class GameService {
   }> {
     return this.httpPlayerService.getPlayers().pipe(
       map((players) => {
-        const deck = this.shuffle(this.createDeck());
+        const deck = this.shuffle(this.createDeck()); // deck = [52, 12, 3, ..., 49] par exemple
 
         const player1Deck: number[] = [];
         const player2Deck: number[] = [];
 
         for (let i = 0; i < deck.length; i++) {
+          // Si i est pair, on ajoute la carte à player1Deck, sinon à player2Deck
           if (i % 2 === 0) player1Deck.push(deck[i]);
           else player2Deck.push(deck[i]);
         }
@@ -64,19 +53,34 @@ export class GameService {
     );
   }
 
+  createDeck(): number[] {
+    // return un tableau de 52 éléments de 1 à 52 => [1, 2, 3, ..., 52]
+    return Array.from({ length: 52 }, (_, i) => i + 1);
+  }
+
+  shuffle(deck: number[]): number[] {
+    for (let i = deck.length - 1; i > 0; i--) {
+      // Génère un nombre aléatoire entre 0 et i
+      const j = Math.floor(Math.random() * (i + 1));
+      // Échange deck[i] et deck[j]
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    // Retourne le deck mélangé => [52, 12, 3, ..., 49] par exemple
+    return deck;
+  }
+
   playRound(
     player1: any,
     player2: any
   ): { player1Card: number | undefined; player2Card: number | undefined } {
+    // retire la première carte de chaque deck
     const player1Card = player1.deck.shift();
     const player2Card = player2.deck.shift();
 
     if (player1Card !== undefined && player2Card !== undefined) {
-      if (player1Card > player2Card) {
-        player1.score++;
-      } else {
-        player2.score++;
-      }
+      // Si la carte de player1 est plus grande, il gagne un point
+      if (player1Card > player2Card) player1.score++;
+      else player2.score++;
     }
     return { player1Card, player2Card };
   }

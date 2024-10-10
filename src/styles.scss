@@ -126,11 +126,6 @@ button {
     cursor: pointer;
 }
 
-// Misc
-.box {
-    border-radius: $borderRadius;
-    padding: 20px;
-    box-shadow: $boxShadow;
-    background-color: $shade000;
-    color: $shade700;
+.p-checkbox-label {
+    cursor: pointer;
 }
