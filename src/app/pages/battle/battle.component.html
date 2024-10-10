@@ -13,7 +13,7 @@
                 <span class="badge">En attente de {{ player1.player.name }}</span>
             </div>
 
-            <!-- Carte de chaque joueur lancée -->
+            <!-- Cartes jouées pour la bataille -->
             <div class="battle-container">
                 <div *ngIf="currentPlayer1Card" [@cardAnimation]="cardState1" class="battle-card player1-card">
                     {{ currentPlayer1Card }}
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <!-- Joueur et nombre de rounds restants -->
+        <!-- Joueurs et nombre de rounds restants -->
         <div class="flex-shrink-1 flex align-items-end justify-content-between">
             <!-- joueur 1 -->
             <div class="flex flex-column align-items-center player-left">
