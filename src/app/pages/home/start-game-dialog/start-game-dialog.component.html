@@ -1,8 +1,10 @@
+<!-- Liste des joueurs disponibles -->
 <div *ngFor="let player of allPlayers" class="field-checkbox">
     <p-checkbox [(ngModel)]="selectedPlayers" [label]="player.name" name="group" [value]="player.id"
         [disabled]="selectedPlayers.length >= 2 && !selectedPlayers.includes(player.id)"></p-checkbox>
 </div>
 
+<!-- Input permettant d'ajouter un jouer -->
 <ng-container *ngIf="showNameInput">
     <div class="custom-input-group">
         <input type="text" placeholder="Nom du joueur" class="custom-input" [(ngModel)]="newPlayer" />
@@ -13,11 +15,12 @@
     <small class="cursor-pointer text-600" (click)="showNameInput = false">Masquer</small>
 </ng-container>
 
-
+<!-- bouton permettant d'afficher l'input précédent -->
 <a *ngIf="!showNameInput" class="add-button" (click)="showNameInput = true">
     <i class="pi pi-plus-circle"></i>
 </a>
 
+<!-- lancer la partie -->
 <div class="text-center mt-2">
     <button (click)="startPlaying()" class="btn" [disabled]="selectedPlayers.length <2">Commencer</button>
 </div>
