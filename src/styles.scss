@@ -15,6 +15,7 @@ body {
 .container {
     background: $bgPrimary;
     padding: 10px 30px;
+    min-height: 100vh;
 }
 
 h1,
@@ -128,4 +129,9 @@ button {
 
 .p-checkbox-label {
     cursor: pointer;
+}
+
+.p-message,
+.p-message-icon {
+    color: rgb(214, 5, 5);
 }

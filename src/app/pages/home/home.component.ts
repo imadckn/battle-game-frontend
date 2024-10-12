@@ -2,26 +2,31 @@ import { HttpPlayerService } from './../../services/http-player.service';
 import { Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { forkJoin, map, Observable } from 'rxjs';
+import { catchError, forkJoin, map, Observable, of } from 'rxjs';
 import { Game, HttpGameService } from '../../services/http-game.service';
 import { RouterModule } from '@angular/router';
-import {
-  DynamicDialogModule,
-  DialogService,
-  DynamicDialogRef,
-} from 'primeng/dynamicdialog';
+import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 import { StartGameDialogComponent } from './start-game-dialog/start-game-dialog.component';
+import { MessagesModule } from 'primeng/messages';
+import { Message, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, RouterModule, DynamicDialogModule],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    RouterModule,
+    DynamicDialogModule,
+    MessagesModule,
+  ],
   providers: [HttpPlayerService, HttpGameService, DialogService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   games$!: Observable<Game[]>;
+  errorMessages: Message[] | undefined;
 
   constructor(
     private httpPlayerService: HttpPlayerService,
@@ -35,8 +40,18 @@ export class HomeComponent {
 
   loadGames() {
     this.games$ = forkJoin({
-      players: this.httpPlayerService.getPlayers(),
-      games: this.httpGameService.getGames(),
+      players: this.httpPlayerService.getPlayers().pipe(
+        catchError((err) => {
+          this.manageError();
+          return of([]);
+        })
+      ),
+      games: this.httpGameService.getGames().pipe(
+        catchError((err) => {
+          this.manageError();
+          return of([]);
+        })
+      ),
     }).pipe(
       map(({ players, games }) => {
         return games.map((game) => {
@@ -76,5 +91,16 @@ export class HomeComponent {
       closable: true,
       dismissableMask: true,
     });
+  }
+
+  manageError() {
+    this.errorMessages = [
+      {
+        severity: 'error',
+        summary: "Une erreur s'est produite lors du chargement des données.",
+        detail:
+          'Pensez à vérifier que le backend est bien lancé et que les tokens correspondent (ce dernier est enregistré dans le fichier environment.ts).',
+      },
+    ];
   }
 }

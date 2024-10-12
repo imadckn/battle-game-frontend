@@ -4,9 +4,12 @@
         <img class="logo" src="assets/img/logo.png" alt="logo">
     </div>
 
+    <!-- Afficher un message en cas d'erreur -->
+    <p-messages *ngIf="errorMessages" [(value)]="errorMessages" [enableService]="false" />
+
     <!-- lancer une nouvelle partie -->
-    <div class="text-center mt-6 mb-4">
-        <a (click)="openDialog()" class="btn">Nouvelle partie</a>
+    <div *ngIf="!errorMessages" class="text-center mt-6 mb-4">
+        <button (click)="openDialog()" class="btn">Nouvelle partie</button>
     </div>
 
     <!-- liste des parties déjà jouées -->
